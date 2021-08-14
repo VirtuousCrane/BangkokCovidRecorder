@@ -14,7 +14,8 @@ def extract_bangkok_data(data: dict[list[dict[str, str]]]) -> int:
 
 def get_previous_data() -> pd.DataFrame:
     """Returns Previous data"""
-    df = pd.read_csv("./src/data/bangkok_data.csv");
+    #df = pd.read_csv("./src/data/bangkok_data.csv");
+    df = pd.read_csv("bangkok_data.csv");
     return df;
 
 def has_updated(t_data: int, y_data: int) -> bool:
@@ -29,7 +30,7 @@ def save_data(df: pd.DataFrame, cases: int) -> bool:
     df.loc[len(df.index)] = [today, cases, cases - df.iloc[-1, 1]];
     data_stream = df.to_csv(index=False);
 
-    f = open("./src/data/bangkok_data.csv", "w");
+    f = open("bangkok_data.csv", "w");
     f.write(data_stream);
     f.close();
 
